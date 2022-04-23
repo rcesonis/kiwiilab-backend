@@ -1,8 +1,10 @@
 const express = require("express");
-
 const app = express();
-const port = 4000;
+const { PORT } = require("./config/constants");
+const userRoute = require("./routers/user");
 
-app.get("/", (req, res) => res.send("Hello"));
+app.use("/", userRoute);
 
-app.listen(port, () => console.log(`App listening on port ${port}!`));
+app.listen(process.env.PORT || 4000, () =>
+  console.log(`App listening on port ${PORT}!`)
+);
